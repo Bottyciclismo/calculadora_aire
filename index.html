@@ -310,6 +310,17 @@ let velocidadReal = Q / area;
 let perdida = (caudalReal/1000)*(longitud/50)*0.1;
 
 // estado tubería
+let diagnostico="";
+
+if(velocidadReal>12){
+diagnostico="⚠ Posible restricción en la red o tubería pequeña";
+}
+else if(velocidadReal<2){
+diagnostico="ℹ Red sobredimensionada";
+}
+else{
+diagnostico="✔ Dimensionado razonable";
+}  
 
 let estado="";
 let color="";
