@@ -286,6 +286,14 @@ if(diametroSeleccionado !== "auto"){
 diametroCalculo = Number(diametroSeleccionado);
 }
 
+let diametroSeleccionado = document.getElementById("diametroDiagnostico").value;
+
+let diametroCalculo = diametroMM;
+
+if(diametroSeleccionado){
+diametroCalculo = Number(diametroSeleccionado);
+}
+
 let diametroM = diametroCalculo / 1000;
 
 // radio de la tubería
