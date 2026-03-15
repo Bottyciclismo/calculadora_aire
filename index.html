@@ -254,7 +254,15 @@ diametroMM=48;
 let Q = (caudalReal / (presion + 1)) / 60000;
 
 // diámetro en metros
-let diametroM = diametroMM / 1000;
+let diametroSeleccionado = document.getElementById("tuberiaUsuario").value;
+
+let diametroCalculo = diametroMM;
+
+if(diametroSeleccionado !== "auto"){
+diametroCalculo = Number(diametroSeleccionado);
+}
+
+let diametroM = diametroCalculo / 1000;
 
 // radio de la tubería
 let radio = diametroM / 2;
