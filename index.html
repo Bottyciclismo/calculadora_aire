@@ -227,6 +227,11 @@ let caudal =
 let factorPresion = presion/7;
 
 let caudalReal = caudal*factorPresion*0.7;
+// modo diagnóstico
+let caudalDiagnostico = Number(document.getElementById("caudalCompresor").value);
+if(!isNaN(caudalDiagnostico) && caudalDiagnostico>0){
+caudalReal = caudalDiagnostico;
+}
 
 let potencia;
 
