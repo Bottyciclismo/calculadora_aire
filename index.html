@@ -212,19 +212,48 @@ let deposito = depositoComercial(depositoCalculado);
 
 // cálculo diámetro real
 
-let Q = caudalReal/60000;
+// cálculo diámetro recomendado (tabla práctica)
 
-let velocidad = 7;
+let diametroTuberia="";
+let diametroMM=0;
 
-let area = Q/velocidad;
+if(caudalReal<=500){
+diametroTuberia='1/2"';
+diametroMM=16;
+}
+else if(caudalReal<=1000){
+diametroTuberia='3/4"';
+diametroMM=26;
+}
+else if(caudalReal<=2000){
+diametroTuberia='1"';
+diametroMM=33;
+}
+else if(caudalReal<=3500){
+diametroTuberia='1 1/4"';
+diametroMM=42;
+}
+else{
+diametroTuberia='1 1/2"';
+diametroMM=48;
+}
 
-let diametro = Math.sqrt((4*area)/Math.PI);
+// cálculo velocidad aproximada
 
-let diametroMM = Math.round(diametro*1000);
+// convertir caudal a volumen real dentro de la tubería
+let Q = (caudalReal / (presion + 1)) / 60000;
 
-// velocidad real
+// diámetro en metros
+let diametroM = diametroMM / 1000;
 
-let velocidadReal = Q/area;
+// radio de la tubería
+let radio = diametroM / 2;
+
+// área de la tubería
+let area = Math.PI * radio * radio;
+
+// velocidad del aire
+let velocidadReal = Q / area;
 
 // pérdida presión
 
@@ -259,7 +288,7 @@ document.getElementById("resultado").innerHTML=
 "<b>Caudal estimado:</b> "+Math.round(caudalReal)+" l/min<br>"+
 "<b>Compresor recomendado:</b> "+potencia.toFixed(1)+" kW ("+tipo+")<br>"+
 "<b>Depósito recomendado:</b> "+deposito+" L<br>"+
-"<b>Diámetro interno mínimo:</b> "+diametroMM+" mm<br>"+
+"<b>Tubería recomendada:</b> "+diametroTuberia+" ("+diametroMM+" mm)<br>"+
 "<b>Pérdida presión estimada:</b> "+perdida.toFixed(2)+" bar<br>"+
 "<b>Velocidad del aire:</b> "+velocidadReal.toFixed(1)+" m/s<br>"+
 "<b>Estado tubería:</b> <span style='color:"+color+"'>"+estado+"</span>";
