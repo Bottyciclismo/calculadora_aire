@@ -278,20 +278,20 @@ diametroMM=48;
 let Q = (caudalReal / (presion + 1)) / 60000;
 
 // diámetro en metros
-let diametroSeleccionado = document.getElementById("tuberiaUsuario").value;
-
 let diametroCalculo = diametroMM;
 
-if(diametroSeleccionado !== "auto"){
-diametroCalculo = Number(diametroSeleccionado);
+// tubería elegida por el usuario
+let diametroUsuario = document.getElementById("tuberiaUsuario").value;
+
+// tubería para diagnóstico
+let diametroDiag = document.getElementById("diametroDiagnostico").value;
+
+if(diametroUsuario !== "auto"){
+diametroCalculo = Number(diametroUsuario);
 }
 
-let diametroSeleccionado = document.getElementById("diametroDiagnostico").value;
-
-let diametroCalculo = diametroMM;
-
-if(diametroSeleccionado){
-diametroCalculo = Number(diametroSeleccionado);
+if(diametroDiag){
+diametroCalculo = Number(diametroDiag);
 }
 
 let diametroM = diametroCalculo / 1000;
@@ -350,7 +350,7 @@ document.getElementById("resultado").innerHTML=
 "<b>Compresor recomendado:</b> "+potencia.toFixed(1)+" kW ("+tipo+")<br>"+
 "<b>Depósito recomendado:</b> "+deposito+" L<br>"+
 "<b>Tubería recomendada:</b> "+diametroTuberia+" ("+diametroMM+" mm)<br>"+
-"<b>Tubería analizada:</b> "+(diametroSeleccionado==="auto" ? diametroTuberia : diametroSeleccionado+" mm")+"<br>"+
+"<b>Tubería analizada:</b> "+diametroCalculo+" mm<br>"+
 "<b>Pérdida presión estimada:</b> "+perdida.toFixed(2)+" bar<br>"+
 "<b>Velocidad del aire:</b> "+velocidadReal.toFixed(1)+" m/s<br>"+
 "<b>Estado tubería:</b> <span style='color:"+color+"'>"+estado+"</span>";
